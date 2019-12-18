@@ -9,7 +9,7 @@ The concurrency control scalability study is described in the following paper.
     Xiangyao Yu, George Bezerra, Andrew Pavlo, Srinivas Devadas, Michael Stonebraker
     http://www.vldb.org/pvldb/vol8/p209-yu.pdf
     
-Build & Test
+Build & Run
 ------------
 
 To build the database.
@@ -21,31 +21,17 @@ To test the database
     python test.py $workload $algorithm $threads $max_txn_count $penalty $abort_penalty $num_warehouses
 
 
-$workload: 'TPCC' or 'YCSB'
+$workload: Supported workloads include YCSB and TPCC
+$alg: Concurrency control algorithm. Five algorithms are supported (CLV, WOUND_WAIT, NO_WAIT, WAIT_DIE, HEKATON)
 $threads: int, number of threads
-$max_txn_count:  int, default is 100000
+$max_txn_count:  int, number of transactions to run per thread, default is 100000
 $abort_penalty: int, default is 1
 $num_warehouses: int, default is 1
     
-Configuration
--------------
-
-DBMS configurations can be changed in the config.h file. Please refer to README for the meaning of each configuration. Here we only list several most important ones. 
-
-    THREAD_CNT        : Number of worker threads running in the database.
-    WORKLOAD          : Supported workloads include YCSB and TPCC
-    CC_ALG            : Concurrency control algorithm. Seven algorithms are supported 
-                        (DL_DETECT, NO_WAIT, HEKATON, SILO, TICTOC) 
-    MAX_TXN_PER_PART  : Number of transactions to run per thread per partition.
-                        
-Configurations can also be specified as command argument at runtime. Run the following command for a full list of program argument. 
-    
-    ./rundb -h
-
-Run
+Run with Customized Configuration
 ---
 
-The DBMS can be run with 
+The DBMS can be run with customized configuration by modifying config.h. 
 
     ./rundb
 
